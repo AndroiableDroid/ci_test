@@ -52,7 +52,8 @@ jobs:
             git clone https://github.com/AndroiableDroid/vendor_LYF -b lineage-16.0 --depth=1 vendor/LYF
             echo "Start the Build Process"
             source build/envsetup.sh
-            brunch mobee01a
+            lunch lineage_mobee01a-userdebug
+            make -j4 bacon
             echo "Deploying"
             export BUILDFILE=$(find $(pwd)/out/target/product/${CODENAME}/lineage*.zip 2>/dev/null)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ${BUILDFILE}
