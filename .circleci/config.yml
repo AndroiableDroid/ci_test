@@ -59,7 +59,7 @@ jobs:
             echo "Start the Build Process"
             source build/envsetup.sh
             lunch lineage_mobee01a-userdebug
-            make -j4 bacon
+            ALLOW_MISSING_DEPENDENCIES=true make -j4 bacon
             echo "Deploying"
             export BUILDFILE=$(find $(pwd)/out/target/product/${CODENAME}/lineage*.zip 2>/dev/null)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ${BUILDFILE}
