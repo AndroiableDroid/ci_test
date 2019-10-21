@@ -38,9 +38,8 @@ jobs:
             git config --global color.ui true
             echo "Initialize & Sync PBRP repo"
             echo $(pwd)
-            wget https://qc1.androidfilehost.com/dl/AE1g4b91_1eqAYQi29xJgA/1571889180/11410932744536984820/lineage-16.0.tar.xz.aa
-            cat *.tar.xz* | tar -xvJf - -i
-            cd lineage-16*
+            repo init --depth=1 -q -u git://github.com/LineageOS/android.git -b ${MANIFEST_BRANCH}
+            time repo sync --optimized-fetch --prune -c -f -q --force-sync --no-clone-bundle --no-tags -j32
             echo "Clean up the .repo, no use of it"
             echo "Source Files are Here now"
             ls -la .
