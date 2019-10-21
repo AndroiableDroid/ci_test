@@ -44,7 +44,6 @@ jobs:
             wget https://qc1.androidfilehost.com/dl/XGvS_0JcoofwEpuU5T8Wkg/1571904225/11410932744536984819/lineage-16.0.tar.xz.ac
             cat *.tar.xz* | tar -xvJf -
             rm -rf *.tar*
-            cd lineage-16*
             echo "Clean up the .repo, no use of it"
             echo "Source Files are Here now"
             ls -la .
