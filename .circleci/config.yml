@@ -39,12 +39,15 @@ jobs:
             echo "Initialize & Sync PBRP repo"
             echo $(pwd)
             repo init --depth=1 -q -u git://github.com/LineageOS/android.git -b ${MANIFEST_BRANCH}
-            time repo sync --optimized-fetch --prune -c -f -q --force-sync --no-clone-bundle --no-tags -j32
+            wget https://qc1.androidfilehost.com/dl/AE1g4b91_1eqAYQi29xJgA/1571889180/11410932744536984820/lineage-16.0.tar.xz.aa
+            wget https://qc1.androidfilehost.com/dl/Boi0nii1tMAwtCIcN57Nug/1571904162/11410932744536984818/lineage-16.0.tar.xz.ab
+            wget https://qc1.androidfilehost.com/dl/XGvS_0JcoofwEpuU5T8Wkg/1571904225/11410932744536984819/lineage-16.0.tar.xz.ac
+            cat *.tar.xz* | tar -xvJf - 
+            cd lineage-16*
             echo "Clean up the .repo, no use of it"
             echo "Source Files are Here now"
             ls -la .
             echo "Get the Device Tree on place"
-            mkdir -p .repo/manifests && mv default.xml .repo/manifests/default.xml
             git clone https://github.com/AndroiableDroid/device_LYF_mobee01a -b lineage-16.0 device/LYF/mobee01a
             git clone https://github.com/AndroiableDroid/device_LYF_msm8916-common -b lineage-16.0 device/LYF/msm8916-common
             git clone https://github.com/AndroiableDroid/kernel -b binder kernel/LYF/mobee01a --depth=1
