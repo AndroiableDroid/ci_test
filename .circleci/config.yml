@@ -56,17 +56,11 @@ jobs:
             mkdir -p .repo && mv manifests .repo/ && ls -la .repo/*
             rm -rf bootable/recovery && git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery -b ${PBRP_BRANCH} bootable/recovery
             rm -rf vendor/pb && git clone https://github.com/PitchBlackRecoveryProject/vendor_pb -b pb vendor/pb
-            mkdir -p out/host/linux-x86/bin
-            wget -q https://github.com/hak86/mkbootimg/raw/master/mkbootimg -O out/host/linux-x86/bin/mkbootimg
-            wget -q https://github.com/hak86/mkbootimg/raw/master/mkbootfs -O out/host/linux-x86/bin/mkbootfs
-            wget -q https://github.com/hak86/mkbootimg/raw/master/mkboot -O out/host/linux-x86/bin/mkboot
             echo "Start the Build Process"
             export ALLOW_MISSING_DEPENDENCIES=true
             source build/envsetup.sh
             lunch ${BUILD_LUNCH}
-            mkdir -p out/target/product/${CODENAME}/system/bin
-            wget -q https://raw.githubusercontent.com/Stock-firmware-dump/X00TD_dump/master/system/bin/adbd -O out/target/product/$CODENAME/system/bin/adbd
-            make -j16 recoveryimage
+            make -j16 adbd recoveryimage
             echo "Deploying"
             sudo chmod a+x vendor/pb/pb_deploy.sh && ./vendor/pb/pb_deploy.sh ${CODENAME} ${SFUserName} ${SFPassword} ${GITHUB_TOKEN}
             export BUILDFILE=$(find $(pwd)/out/target/product/${CODENAME}/PitchBlack*.zip 2>/dev/null)
