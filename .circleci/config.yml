@@ -46,7 +46,7 @@ jobs:
             echo "Source Files are Here now"
             ls -la .
             echo "Get the Device Tree on place"
-            git clone https://PitchBlackRecoveryProect:$GITHUB_TOKEN@github.com/PitchBlackRecoveryProject/${CIRCLE_PROJECT_REPONAME} device/${VENDOR}/${CODENAME}
+            git clone https://github.com/PitchBlackRecoveryProject/android_device_realme_RMX1811 device/${VENDOR}/${CODENAME}
             # Sync again, as Device has Dependencies
             repo sync -c -f -q --force-sync --no-clone-bundle --no-tags -j32
             # Keep the whole .repo/manifests folder
